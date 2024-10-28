@@ -21,9 +21,9 @@ toggleMode.addEventListener('click', () => {
 
 function loadChannels() {
     const m3uUrl = 'https://raw.githubusercontent.com/hayatiptv/iptv/master/index.m3u';
-    const proxyUrl = `https://thingproxy.freeboard.io/fetch/${m3uUrl}`;
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/${m3uUrl}`; // CORS proxy kullanın
 
-    fetch(proxyUrl) // Proxy üzerinden dosyayı yükle
+    fetch(proxyUrl)
         .then(response => response.text())
         .then(data => {
             const lines = data.split('\n');
@@ -33,9 +33,9 @@ function loadChannels() {
                 if (lines[i].startsWith('#EXTINF:')) {
                     const channelInfo = lines[i].split(',');
                     const channelName = channelInfo[1].trim();
-                    const logoMatch = lines[i].match(/tvg-logo="([^"]+)"/); // Logo URL
-                    const logoUrl = logoMatch ? logoMatch[1].replace('http://', 'https://') : ''; // HTTP'yi HTTPS'ye çevir
-                    const channelUrl = lines[i + 1].trim().replace('http://', 'https://'); // HTTP'yi HTTPS'ye çevir
+                    const logoMatch = lines[i].match(/tvg-logo="([^"]+)"/);
+                    const logoUrl = logoMatch ? logoMatch[1].replace('http://', 'https://') : '';
+                    const channelUrl = lines[i + 1].trim().replace('http://', 'https://');
                     channels.push({ name: channelName, logo: logoUrl, url: channelUrl });
                 }
             }
@@ -44,12 +44,13 @@ function loadChannels() {
                 const option = document.createElement('option');
                 option.value = channel.url;
                 option.textContent = channel.name;
-                option.dataset.logo = channel.logo; // Logo URL'yu veri özniteliği olarak saklayın
+                option.dataset.logo = channel.logo;
                 channelSelector.appendChild(option);
             });
         })
         .catch(error => console.error('Hata:', error));
 }
+
 
 
 // Kanalı yükle
