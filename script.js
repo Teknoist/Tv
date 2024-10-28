@@ -20,7 +20,10 @@ toggleMode.addEventListener('click', () => {
 });
 
 function loadChannels() {
-    fetch('https://raw.githubusercontent.com/hayatiptv/iptv/master/index.m3u') // URL'den dosyayı yükle
+    const m3uUrl = 'https://raw.githubusercontent.com/hayatiptv/iptv/master/index.m3u';
+    const proxyUrl = `https://thingproxy.freeboard.io/fetch/${m3uUrl}`;
+
+    fetch(proxyUrl) // Proxy üzerinden dosyayı yükle
         .then(response => response.text())
         .then(data => {
             const lines = data.split('\n');
@@ -47,6 +50,7 @@ function loadChannels() {
         })
         .catch(error => console.error('Hata:', error));
 }
+
 
 // Kanalı yükle
 function loadChannel() {
