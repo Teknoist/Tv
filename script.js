@@ -21,7 +21,7 @@ toggleMode.addEventListener('click', () => {
 
 // Kanalları yükle
 function loadChannels() {
-    fetch('main.m3u') // Yerel dosyayı kullanıyoruz
+    fetch('https://raw.githubusercontent.com/hayatiptv/iptv/master/index.m3u') // URL'den dosyayı yükle
         .then(response => response.text())
         .then(data => {
             const lines = data.split('\n');
@@ -66,7 +66,7 @@ function loadChannel() {
 
 // Logoyu göster
 function displayLogo(logoUrl) {
-    selectedLogo.innerHTML = `<img src="${logoUrl}" alt="Kanal Logosu">`;
+    selectedLogo.innerHTML = `<img src="${logoUrl}" alt="Kanal Logosu" style="border: 2px solid;">`;
     selectedLogo.style.opacity = 1; // Logoyu göster
 }
 
