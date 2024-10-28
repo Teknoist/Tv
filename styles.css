@@ -1,0 +1,55 @@
+body {
+    color: #343a40;
+    font-family: 'Roboto', sans-serif;
+    transition: color 0.3s, background-color 0.3s;
+    background-color: #ffffff; /* Varsayılan arka plan rengi */
+}
+
+.dark-mode {
+    color: #fff;
+    background-color: #121212; /* Karanlık mod için arka plan rengi */
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#selectedLogo {
+    position: relative;
+    margin-top: 100px;
+	opacity: 0;
+    transition: opacity 0.5s;
+    text-align: center;
+}
+
+.selected-logo img {
+    width: 150px;
+    height: auto;
+    border: 3px solid #007bff;
+    border-radius: 5px;
+}
+
+.dark-mode .selected-logo img {
+    border-color: #ffc107; /* Karanlık modda logo kenar rengi */
+}
+
+.btn {
+    margin-bottom: 20px;
+    border: none;
+    background: transparent;
+    font-size: 30px; /* İkon boyutunu ayarlayın */
+    color: inherit; /* Düğmenin yazı rengini miras al */
+}
+
+.selected-logo img {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

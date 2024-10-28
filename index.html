@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı Yayın İzleme</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Canlı Yayın İzleme</h1>
+        <div class="text-center mb-4">
+            <button id="toggleMode" class="btn btn-outline-light">
+                <span class="material-icons">dark_mode</span>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <select id="channelSelector" class="custom-select" onchange="loadChannel()">
+                    <option value="" disabled selected>Kanal Seçin</option>
+                </select>
+            </div>
+            <div class="col-md-8 mb-4">
+                <video id="videoPlayer" class="w-100" controls></video>
+                <div id="selectedLogo" class="selected-logo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="script.js"></script>
+</body>
+</html>
