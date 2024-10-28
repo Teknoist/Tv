@@ -16,7 +16,7 @@ toggleMode.addEventListener('click', () => {
     if (logoImage) {
         logoImage.style.borderColor = darkMode ? '#ffc107' : '#007bff';
     }
-    toggleMode.style.color = darkMode ? '#fff' : '#343a40'; // Düğme metninin rengi
+    toggleMode.style.color = darkMode ? '#fff' : '#306396'; // Düğme metninin rengi
 });
 
 function loadChannels() {
