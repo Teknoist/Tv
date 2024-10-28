@@ -19,7 +19,7 @@ toggleMode.addEventListener('click', () => {
 });
 
 function loadChannels() {
-    fetch('http://stream.tvcdn.net/lists/tr.m3u') // Yeni link burada
+    fetch('https://cors-anywhere.herokuapp.com/http://stream.tvcdn.net/lists/tr.m3u') // CORS proxy kullanıldı
         .then(response => response.text())
         .then(data => {
             const lines = data.split('\n');
