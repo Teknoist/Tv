@@ -19,7 +19,6 @@ toggleMode.addEventListener('click', () => {
     toggleMode.style.color = darkMode ? '#fff' : '#343a40'; // Düğme metninin rengi
 });
 
-// Kanalları yükle
 function loadChannels() {
     fetch('https://raw.githubusercontent.com/hayatiptv/iptv/master/index.m3u') // URL'den dosyayı yükle
         .then(response => response.text())
@@ -32,8 +31,8 @@ function loadChannels() {
                     const channelInfo = lines[i].split(',');
                     const channelName = channelInfo[1].trim();
                     const logoMatch = lines[i].match(/tvg-logo="([^"]+)"/); // Logo URL
-                    const logoUrl = logoMatch ? logoMatch[1] : ''; // Logo URL yoksa boş dize
-                    const channelUrl = lines[i + 1].trim();
+                    const logoUrl = logoMatch ? logoMatch[1].replace('http://', 'https://') : ''; // HTTP'yi HTTPS'ye çevir
+                    const channelUrl = lines[i + 1].trim().replace('http://', 'https://'); // HTTP'yi HTTPS'ye çevir
                     channels.push({ name: channelName, logo: logoUrl, url: channelUrl });
                 }
             }
