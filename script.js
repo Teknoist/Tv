@@ -5,6 +5,7 @@ const toggleMode = document.getElementById('toggleMode');
 
 let darkMode = false;
 
+// Karanlık / Aydınlık mod geçişi
 toggleMode.addEventListener('click', () => {
     darkMode = !darkMode;
     document.body.classList.toggle('dark-mode', darkMode);
@@ -18,8 +19,9 @@ toggleMode.addEventListener('click', () => {
     toggleMode.style.color = darkMode ? '#fff' : '#343a40'; // Düğme metninin rengi
 });
 
+// Kanalları yükle
 function loadChannels() {
-    fetch('https://cors-anywhere.herokuapp.com/http://stream.tvcdn.net/lists/tr.m3u') // CORS proxy kullanıldı
+    fetch('main.m3u') // Yerel dosyayı kullanıyoruz
         .then(response => response.text())
         .then(data => {
             const lines = data.split('\n');
@@ -47,6 +49,7 @@ function loadChannels() {
         .catch(error => console.error('Hata:', error));
 }
 
+// Kanalı yükle
 function loadChannel() {
     const selectedOption = channelSelector.options[channelSelector.selectedIndex];
     const channelUrl = selectedOption.value;
@@ -61,9 +64,14 @@ function loadChannel() {
     }
 }
 
+// Logoyu göster
 function displayLogo(logoUrl) {
     selectedLogo.innerHTML = `<img src="${logoUrl}" alt="Kanal Logosu">`;
     selectedLogo.style.opacity = 1; // Logoyu göster
 }
 
+// Kanal seçildiğinde yükleme
+channelSelector.addEventListener('change', loadChannel);
+
+// Başlangıçta kanalları yükle
 loadChannels();
