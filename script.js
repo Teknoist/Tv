@@ -14,9 +14,8 @@ toggleMode.addEventListener('click', () => {
     // Logo ve düğme renklerini güncelle
     const logoImage = selectedLogo.querySelector('img');
     if (logoImage) {
-        logoImage.style.borderColor = darkMode ? '#ffc107' : '#007bff';
+        logoImage.style.borderColor = '';
     }
-    toggleMode.style.color = darkMode ? '#fff' : '#306396'; // Düğme metninin rengi
 });
 
 function loadChannels() {
@@ -70,7 +69,7 @@ function loadChannel() {
 
 // Logoyu göster
 function displayLogo(logoUrl) {
-    selectedLogo.innerHTML = `<img src="${logoUrl}" alt="Kanal Logosu" style="border: 2px solid;">`;
+    selectedLogo.innerHTML = `<img src="${logoUrl}" alt="Kanal Logosu">`;
     selectedLogo.style.opacity = 1; // Logoyu göster
 }
 

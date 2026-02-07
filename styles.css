@@ -1,48 +1,196 @@
+:root {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --text: #1c2433;
+    --muted: #5b667a;
+    --accent: #1f6feb;
+    --accent-soft: rgba(31, 111, 235, 0.12);
+    --border: rgba(28, 36, 51, 0.08);
+    --shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
 body {
-    color: #343a40;
+    margin: 0;
+    color: var(--text);
     font-family: 'Roboto', sans-serif;
     transition: color 0.3s, background-color 0.3s;
-    background-color: #ffffff; /* Varsayılan arka plan rengi */
+    background: radial-gradient(circle at top, #ffffff 0%, var(--bg) 65%, #eef1f8 100%);
+    min-height: 100vh;
 }
 
 .dark-mode {
-    color: #fff;
-    background-color: #121212; /* Karanlık mod için arka plan rengi */
+    color-scheme: dark;
+    --bg: #0f1117;
+    --surface: #171a23;
+    --text: #f4f6fb;
+    --muted: #a6b0c3;
+    --accent: #7aa2ff;
+    --accent-soft: rgba(122, 162, 255, 0.18);
+    --border: rgba(244, 246, 251, 0.08);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    background: radial-gradient(circle at top, #1a1f2b 0%, var(--bg) 70%, #0b0d13 100%);
 }
 
-h1 {
-    margin-bottom: 20px;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-#selectedLogo {
-    position: relative;
-    margin-top: 100px;
-	opacity: 0;
-    transition: opacity 0.5s;
-    text-align: center;
+.app-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 4vw, 40px);
 }
 
-.selected-logo img {
-    width: 150px;
-    height: auto;
-    border: 3px solid #007bff;
-    border-radius: 5px;
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(20px, 3vw, 28px);
+    border-radius: 24px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
-.dark-mode .selected-logo img {
-    border-color: #ffc107; /* Karanlık modda logo kenar rengi */
+.brand h1 {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    margin: 0 0 8px;
 }
 
-.btn {
-    margin-bottom: 20px;
+.subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+}
+
+.mode-toggle {
     border: none;
-    background: transparent;
-    font-size: 30px; /* İkon boyutunu ayarlayın */
-    color: inherit; /* Düğmenin yazı rengini miras al */
+    background: var(--accent-soft);
+    color: var(--accent);
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 10px 20px rgba(31, 111, 235, 0.15);
+}
+
+.mode-toggle:hover {
+    transform: translateY(-2px);
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(20px, 3vw, 32px);
+}
+
+.channel-card,
+.player-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: clamp(20px, 3vw, 28px);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.channel-card h2 {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    margin-bottom: 16px;
+}
+
+.custom-select {
+    height: auto;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.dark-mode .custom-select {
+    background: rgba(23, 26, 35, 0.85);
+}
+
+.selected-logo {
+    margin-top: 32px;
+    min-height: 120px;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 .selected-logo img {
+    width: clamp(110px, 20vw, 160px);
+    height: auto;
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    background: var(--surface);
+    padding: 8px;
     animation: fadeIn 0.5s;
+}
+
+.player-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.player-frame {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #0d1117;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mode-toggle {
+        align-self: flex-end;
+    }
+}
+
+@media (min-width: 1200px) {
+    .app-grid {
+        grid-template-columns: 1fr 1.4fr;
+    }
 }
 
 @keyframes fadeIn {
