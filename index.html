@@ -11,26 +11,38 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">
-            <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank" style="text-decoration: none; color: inherit;">Canlı Yayın İzleme</a>
-        </h1>
-        <div class="text-center mb-4">
-            <button id="toggleMode" class="btn btn-outline-light">
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand">
+                <h1>
+                    <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">Canlı Yayın İzleme</a>
+                </h1>
+                <p class="subtitle">TV, telefon ve bilgisayar için modern yayın deneyimi.</p>
+            </div>
+            <button id="toggleMode" class="mode-toggle" type="button" aria-label="Karanlık modu aç/kapat">
                 <span class="material-icons">dark_mode</span>
             </button>
-        </div>
-        <div class="row">
-            <div class="col-md-4 mb-4">
+        </header>
+
+        <main class="app-grid">
+            <section class="channel-card">
+                <h2>Kanal Seçimi</h2>
                 <select id="channelSelector" class="custom-select" onchange="loadChannel()">
                     <option value="" disabled selected>Kanal Seçin</option>
                 </select>
-            </div>
-            <div class="col-md-8 mb-4">
-                <video id="videoPlayer" class="w-100" controls></video>
-                <div id="selectedLogo" class="selected-logo"></div>
-            </div>
-        </div>
+                <div class="selected-logo" id="selectedLogo"></div>
+            </section>
+
+            <section class="player-card">
+                <div class="player-header">
+                    <span class="status-dot"></span>
+                    <span>Canlı Yayın</span>
+                </div>
+                <div class="player-frame">
+                    <video id="videoPlayer" class="w-100" controls></video>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
